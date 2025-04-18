@@ -1,0 +1,61 @@
+HQ DG:
+----------
+
+Instructions of play:
+---------------------
+Pick a starting room with two doors:
+
+Open a door:
+	a) generate coridor
+	b) generate room
+
+
+
+
+Adventure design:
+-------------------
+Mission
+ - Goal + flavor text
+ - 2 minor glues
+ - 2 major glues
+Monsters (set of hq monsters + specialities)
+Wondering monsters -- set of monsters encountered before
+boss room
+
+Flow of the dungeon:
+--------------------
+Find the final boss room, where the final major room is
+
+
+Generate coridor:
+------------------
+Flavor text
+Coridor enqounter
+Wondering monsters
+Traps?
+Doors
+Blocked -- how long?
+
+
+Generate room:
+---------------
+Doors (0-3)
+Monsters
+Furniture
+ - Flavor text
+ - Encounter
+  - Room encounter
+  - Glue probability (increasing in steps 15, 25, 50, 75, 100)
+ - treasure
+Traps
+Treasure chest
+
+Glues:
+-------
+Minor glues
+ - next wondering monster type
+ - next furniture type
+ 
+Major glues
+ - boss monster type
+
