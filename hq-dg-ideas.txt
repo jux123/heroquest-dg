@@ -59,6 +59,7 @@ Glues:
 Minor glues
  - next wondering monster type
  - next furniture type
+ - secret path
  
 Major glues
  - boss monster type (tier 5)
