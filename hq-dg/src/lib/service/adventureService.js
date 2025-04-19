@@ -1,18 +1,15 @@
 import {  Adventure } from '../model/Adventure.js';
 import { AreaType } from '../model/Area.js';
+import { difficulties } from '../service/utils.js';
 
-export const newAdventure = () => {
-    const adventure = new Adventure('123', new Date(), 'A new adventure', {
-        areas: [],
-        discoveredFurniture: [],
-        discoveredMonsters: []
-    });
+export const newAdventure = (numberOfPlayers, difficulty) => {
+    const adventure = new Adventure('123', new Date(), 'A new adventure');
 
     console.log("Adventure created:", adventure);
     return adventure;
 }
 
-const adventure = newAdventure();
+const adventure = newAdventure(3, difficulties.MEDIUM);
 
 let nextArea = adventure.startingRoom();
 

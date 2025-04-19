@@ -17,7 +17,7 @@ export const getRandomCategory = () => {
     return categories[randomIndex];
 }
 
-export const categorys = {
+export const difficulties = {
     EASY: 1,
     MEDIUM: 2,
     HARD: 3

@@ -9,7 +9,7 @@ export class Area {
         this.type = type;
     }
 
-    getNumberOfDoors(previousNumberOfDoors) {
+    generateNumberOfDoors(previousNumberOfDoors) {
         let result = null;
         switch (rollD10()) {
             case 1: case 2: case 3:
@@ -26,7 +26,7 @@ export class Area {
         }
 
         if (result === 0 && previousNumberOfDoors < 2) {
-            return this.setNumberOfDoors();
+            return this.generateNumberOfDoors();
         }
 
         return result;
@@ -36,7 +36,7 @@ export class Area {
 export class Corridor extends Area {
     constructor(description, monsters = [], blockedDistance = null, encounter = null, previousArea) {
         super(AreaType.CORRIDOR);
-        this.numberOfDoors = super.getNumberOfDoors(previousArea.numberOfDoors);
+        this.numberOfDoors = super.generateNumberOfDoors(previousArea.numberOfDoors);
         this.description = description;
         this.monsters = monsters;
         this.blockedDistance = blockedDistance;
@@ -49,7 +49,7 @@ export class Corridor extends Area {
 export class Room extends Area {
     constructor(description, monsters = [], furniture = [], encounter = null, previousArea) {
         super(AreaType.ROOM);
-        this.numberOfDoors = super.getNumberOfDoors(previousArea.numberOfDoors);
+        this.numberOfDoors = super.generateNumberOfDoors(previousArea.numberOfDoors);
         this.description = description;
         this.monsters = monsters;
         this.furniture = furniture;
