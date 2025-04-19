@@ -1,12 +1,14 @@
-class Monster {
-    constructor(monsterType, feature) {
+
+export class Monster {
+    constructor(monsterType, features = [], category) {
         this.monsterType = monsterType;
-        this.feature = feature;
+        this.features = features;
+        this.category = category;
     }
     
 }
 
-class MonsterType {
+export class MonsterType {
   constructor(tier, monsterTypesName, move, attack, defense, body, mind) {
     this.tier = tier;
     this.monsterTypesName = monsterTypesName;
@@ -18,16 +20,22 @@ class MonsterType {
   }
 }
 
-class MonsterFeature {
-  constructor(name, description, monsterTypesName = []) {
+export class MonsterFeature {
+  constructor(tier, name, description, monsterTypeNames = []) {
+    this.tier = tier;
     this.name = name;
     this.description = description;
-    this.monsterTypes = monsterTypes;
+    this.monsterTypeNames = monsterTypeNames;
   }
 }
 
-const monsterTypesName = {
+export const monsterTypeName = {
     GOBLIN: 'Goblin',
+    SKELETON: 'Skeleton',
+    ZOMBIE: 'Zombie',
     ORC: 'Orc',
-    SKELETON: 'Skeleton'
+    MUMMY: 'Mummy',
+    ABOMINATION: 'Abomination',
+    DREAD_WARRIOR: 'Dread Warrior',
+    GARGOYLE: 'Gargoyle'
 };
