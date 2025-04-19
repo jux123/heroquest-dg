@@ -11,10 +11,23 @@ export const rollD10 = () => {
 }
 
 
-export const getRandomCategory = () => {
-    const categories = Object.values(categorys);
-    const randomIndex = Math.floor(Math.random() * categories.length);
-    return categories[randomIndex];
+export const getRandomDifficulty = () => {
+    const difficultiesArr = Object.values(difficulties);
+    const randomIndex = Math.floor(Math.random() * difficultiesArr.length);
+    return difficultiesArr[randomIndex];
+}
+
+export const getRandomEncounterDifficulty = (adventureDifficulty) => {    
+    switch (adventureDifficulty) {
+        case difficulties.EASY:
+            return Math.max(getRandomDifficulty()  - 1, difficulties.EASY);
+        case difficulties.MEDIUM:
+            return getRandomDifficulty();
+        case difficulties.HARD:
+            return Math.min(getRandomDifficulty()  + 1, difficulties.HARD);
+        default:
+            throw new Error('Invalid adventure difficulty');
+    }
 }
 
 export const difficulties = {
@@ -22,3 +35,8 @@ export const difficulties = {
     MEDIUM: 2,
     HARD: 3
 }
+
+export const getRandomObjectsfromArray = (array, numberOfObjects) => {
+    const shuffledArray = array.sort(() => 0.5 - Math.random());
+    return shuffledArray.slice(0, numberOfObjects);
+}   

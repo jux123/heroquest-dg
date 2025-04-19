@@ -1,4 +1,4 @@
-import {  Adventure } from '../model/Adventure.js';
+import { Adventure } from '../model/Adventure.js';
 import { AreaType } from '../model/Area.js';
 import { difficulties } from '../service/utils.js';
 
@@ -14,6 +14,8 @@ const adventure = newAdventure(3, difficulties.MEDIUM);
 let nextArea = adventure.startingRoom();
 
 console.log("Starting room:", nextArea);
+
+adventure.adventureProgress.milestoneLevel = 1;
 
 nextArea = adventure.nextArea(AreaType.CORRIDOR);
 

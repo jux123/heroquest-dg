@@ -1,16 +1,30 @@
 import { MonsterFeature, MonsterType, monsterTypeName } from "../model/Monster.js";
 
 export const monstersTypes = [
-    new MonsterType(1, 'Goblin', 10, 2, 2, 1, 1),
-    new MonsterType(1, 'Skeleton', 6, 2, 2, 1, 0),
-    new MonsterType(1, 'Zombie', 5, 2, 3, 1, 0),
-    new MonsterType(2, 'Orc', 8, 3, 2, 1, 2),
-    new MonsterType(2, 'Mummy', 4, 3, 4, 2, 0),
-    new MonsterType(3, 'Abomination', 6, 3, 3, 2, 3),
-    new MonsterType(3, 'Dread Warrior', 7, 4, 4, 3, 3),
-    new MonsterType(4, 'Gargoyle', 6, 4, 5, 3, 4)
+    new MonsterType(1, monsterTypeName.GOBLIN, 10, 2, 2, 1, 1, 6),
+    new MonsterType(1, monsterTypeName.SKELETON, 6, 2, 2, 1, 0, 6),
+    new MonsterType(1, monsterTypeName.ZOMBIE, 5, 2, 3, 1, 0, 4),
+    new MonsterType(2, monsterTypeName.ORC, 8, 3, 2, 1, 2, 8),
+    new MonsterType(2, monsterTypeName.MUMMY, 4, 3, 4, 2, 0, 2),
+    new MonsterType(3, monsterTypeName.ABOMINATION, 6, 3, 3, 2, 3, 3),
+    new MonsterType(3, monsterTypeName.DREAD_WARRIOR, 7, 4, 4, 3, 3, 3),
+    new MonsterType(4, monsterTypeName.GARGOYLE, 6, 4, 5, 3, 4, 1)
     
 ];
+
+export const getMonsterTypeByName = (monsterTypeName) => {
+    return monstersTypes.find(m => m.monsterTypesName === monsterTypeName);
+}
+
+export const getMonsterTypeNamesForMilestoneLevel = (tier) => {
+    return monstersTypes.filter(m => m.tier <= tier).map(m => m.monsterTypesName);
+}
+
+export const getMonsterFeaturesByTypeAndTier = (monsterTypeName, tier) => {
+    return monsterFeatures
+        .filter(mf => mf.monsterTypeNames.includes(monsterTypeName))
+        .filter(mf => mf.tier <= tier);
+}
 
 export const monsterFeatures = [
     new MonsterFeature(1, 'Long weapon', 'Can attack diagonally. +1 defence when adjacent same type monster', 

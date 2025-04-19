@@ -1,4 +1,6 @@
 import { AreaType, Room, Corridor, FirstRoom, FinalRoom } from "./Area.js";
+import { getRoomMonsters, getWonderingMonsters } from '../service/monsterService.js';
+//TODO: Area -> areaService
 
 export class Adventure {
     constructor(id, numberOfPlayers, createdDate = new Date(), description = '', adventureProgress = new AdventureProgress()) {
@@ -17,21 +19,26 @@ export class Adventure {
 
     nextArea(areaType) {
         const lastArea = this.adventureProgress.areas[this.adventureProgress.areas.length - 1];
+
         if (areaType == AreaType.CORRIDOR) {
-            return this.nextCorridor(lastArea);
+            const monsters = getWonderingMonsters(this);
+            return this.nextCorridor(lastArea, monsters);
         } else if (areaType == AreaType.ROOM) {
-            return this.nextRoom(lastArea);
+            const monsters = getRoomMonsters(this);
+            const distinctMonsterTypes = [...new Set(monsters.map(m => m.monsterType.monsterTypesName))];
+            this.adventureProgress.addDiscoveredMonsterTypes(distinctMonsterTypes);
+            return this.nextRoom(lastArea, monsters);
         }
     }
 
-    nextRoom(lastArea) {
-        const room = new Room('A new room', [], [], null, lastArea);
+    nextRoom(lastArea, monsters) {
+        const room = new Room('A new room', monsters, [], null, lastArea);
         this.adventureProgress.addArea(room);
         return room;
     }
 
-    nextCorridor(lastArea) {
-        const corridor = new Corridor('A new corridor', [], null, null, lastArea);
+    nextCorridor(lastArea, monsters) {
+        const corridor = new Corridor('A new corridor', monsters, null, null, lastArea);
         this.adventureProgress.addArea(corridor);
         return corridor;
     }
@@ -53,10 +60,10 @@ export class AdventureProgress {
         this.discoveredFurniture.push(furniture);
     }
 
-    addDiscoveredMonsterType(monsterTypeNames) {
-        monsterTypeNames.forEach(monsterType => {
-            this.discoveredMonsterTypes.findIndex(m => m === monsterType) === -1 && 
-            this.discoveredMonsterTypes.push(monsterType);
+    addDiscoveredMonsterTypes(monsterTypeNames) {
+        monsterTypeNames.forEach(monsterTypeName => {
+            this.discoveredMonsterTypes.findIndex(m => m === monsterTypeName) === -1 && 
+            this.discoveredMonsterTypes.push(monsterTypeName);
         });
     }
 }

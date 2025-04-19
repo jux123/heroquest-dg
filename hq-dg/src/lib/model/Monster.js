@@ -9,14 +9,15 @@ export class Monster {
 }
 
 export class MonsterType {
-  constructor(tier, monsterTypesName, move, attack, defense, body, mind) {
+  constructor(tier, monsterTypesName, move, attack, defense, bodyPoints, mindPoints, modelAmount) {
     this.tier = tier;
     this.monsterTypesName = monsterTypesName;
     this.move = move;
     this.attack = attack;
     this.defense = defense;
-    this.body = body;
-    this.mind = mind;
+    this.bodyPoints = bodyPoints;
+    this.mindPoints = mindPoints;
+    this.modelAmount = modelAmount;
   }
 }
 
